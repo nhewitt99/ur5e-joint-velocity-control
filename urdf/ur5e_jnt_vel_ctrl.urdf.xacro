@@ -1,70 +1,15 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro"
        name="ur5" >
-
-  <!-- Pull in UR5e description -->
-  <xacro:include filename="$(find ur_description)/urdf/ur5e.xacro" />
+  <!-- Pull in UR5e description macro -->
+  <!-- Use velocity, not position, interfaces -->
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur5e_macro.xacro" />
+  <xacro:ur5e_robot prefix="" transmission_hw_interface="hardware_interface/VelocityJointInterface" />
 
   <!-- Need gazebo plugin for control -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so" />
   </gazebo>
-
-  <!-- Add velocity controllers -->
-  <transmission name="shoulder_pan_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder_pan_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="shoulder_pan_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="shoulder_lift_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder_lift_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="shoulder_lift_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="elbow_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="elbow_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="elbow_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="wrist_1_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_1_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_1_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="wrist_2_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_2_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_2_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  <transmission name="wrist_3_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_3_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="wrist_3_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
 
   <!-- define the ur5's position and orientation in the world coordinate system -->
   <link name="world"/>
