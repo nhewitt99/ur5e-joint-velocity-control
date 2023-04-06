@@ -1,0 +1,13 @@
+<launch>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+    <arg name="paused" value="true" />
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find ur5e-joint-velocity-control)/urdf/ur5e_jnt_vel_ctrl.urdf.xacro" />
+  
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5 -J shoulder_lift_joint -1.5 -J elbow_joint 1.0" />
+
+  <include file="$(find ur5e-joint-velocity-control)/launch/ur5e_joint_velocity_control.launch" />
+
+</launch>
