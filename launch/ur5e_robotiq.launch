@@ -1,0 +1,19 @@
+<launch>
+  <arg name="gui" default="True" />
+  <param name="use_gui" value="$(arg gui)" />
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find ur5e-joint-velocity-control)/config/ur5e_robotiq.yaml" command="load"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find ur5e-joint-velocity-control)/urdf/ur5e_robotiq.urdf.xacro"/>
+  
+  <!-- load the controllers -->
+  <node name="control_spawner" pkg="controller_manager" type="spawner" args="joint_state_controller joint_group_vel_controller gripper_controller" respawn="false" output="screen" />
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/ur5/joint_states" />
+  </node>
+
+</launch>

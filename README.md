@@ -8,6 +8,8 @@ This package is based heavily on the [roboticscasual blog post here](https://rob
 Tested on ROS Noetic.
 Requires the `ur-description` package, which provides robot descriptions for UR manipulators.
 
+For the manipulator + Robotiq gripper, also need the [Robotiq package](https://github.com/nhewitt99/robotiq) and the [libroboticsgroup Gazebo plugins](https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins).
+
 ## Usage
 Simply run
 ```
