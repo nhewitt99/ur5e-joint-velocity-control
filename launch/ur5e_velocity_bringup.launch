@@ -1,0 +1,18 @@
+<!-- Run the UR5e hardware driver bringup but load velocity controllers -->
+
+<?xml version="1.0"?>
+<launch>
+    <!-- Expose these two args, all others default -->
+    <arg name="robot_ip" />
+    <arg name="kinematics_config" />
+
+    <include file="$(find ur_robot_driver)/launch/ur5e_bringup.launch">
+        <!-- Pass into included file -->
+        <arg name="robot_ip" value="$(arg robot_ip)" />
+        <arg name="kinematics_config" value="$(arg kinematics_config)" />
+
+        <!-- Load velocity controller instead of default scaled_pos_joint_traj -->
+        <arg name="controllers" value="joint_group_vel_controller joint_state_controller speed_scaling_state_controller force_torque_sensor_controller" />
+        <arg name="stopped_controllers" value="pos_joint_traj_controller scaled_pos_joint_traj_controller" />
+    </include>
+</launch>
