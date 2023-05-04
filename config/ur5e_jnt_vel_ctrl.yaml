@@ -1,7 +1,14 @@
-# Publish all joint states -----------------------------------
+# Publish joint states, need to specify which so world joint not published
 joint_state_controller:
     type: joint_state_controller/JointStateController
     publish_rate: 50
+    joints:
+        - shoulder_pan_joint
+        - shoulder_lift_joint
+        - elbow_joint
+        - wrist_1_joint
+        - wrist_2_joint
+        - wrist_3_joint  
 
 # Pass an array of joint velocities directly to the joints
 joint_group_vel_controller:

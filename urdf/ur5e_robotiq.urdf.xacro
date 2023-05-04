@@ -11,7 +11,7 @@
   <joint name="robotiq_coupler_joint" type="fixed">
     <parent link="tool0" />
     <child link="robotiq_arg2f_base_link" />
-    <origin xyz="0 0 0" rpy="0 1.57079632679 0" />
+    <origin xyz="0 0 0" rpy="0 0 1.57079632679" />
   </joint>
 
   <!-- Make gripper controllable in Gazebo -->
